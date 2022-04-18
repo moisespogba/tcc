@@ -2,11 +2,10 @@ const express = require("express");
 const app = express();
 var porta = process.env.PORT || 3000;
 var produtoRoute = require("./routes/produtoRoute");
-var quadraRoute = require("./routes/quadraRoute");
-var caixaRoute = require("./routes/caixaRoute");
 var usuarioRoute = require("./routes/usuarioRoute");
+const passport = require("./config/passport");
+var aut = require("./config/autenticacao");
 
-//const bodyParser = require('body-parser')
 const path = require("path");
 const flash = require("req-flash");
 var session = require("express-session");
@@ -25,6 +24,16 @@ app.use(express.static(path.join("src", "public")));
 
 app.use("/admin/produto", produtoRoute);
 app.use("/admin/usuario", usuarioRoute);
+app.get("/admin", function (req, res) {
+  res.render("login");
+});
+app.post(
+  "/admin",
+  passport.authenticate("local", {
+    successRedirect: "/admin/produto",
+    failureRedirect: "/admin",
+  })
+);
 //app.use('/admin/quadra',quadraRoute)
 //app.use('/caixa',caixaRoute)
 

@@ -32,7 +32,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>PRODUTO</th>
-                                    <th>ESTOQUE</th>
+                                    <th>FOTO</th>
                                     <th>VALOR</th>
                                     <th>TIPO</th>
                                     <th>EDITA</th>
@@ -51,7 +51,10 @@
                                 <tr>
                                     <th scope="row"><%=produto.id%></th>
                                     <td><%=produto.nome%></td>
-                                    <td><%=produto.qtd%></td>
+                                    <td>
+                                        <img width="80px" src="/fotos/<%=produto.foto%>">
+                                        
+                                    </td>
                                     <td><%=numberToReal(produto.valor)%></td>
                                     <td><%=produto.tipo%></td>
                                     <td>
